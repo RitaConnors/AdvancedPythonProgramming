@@ -1,1 +1,13 @@
+from Rectangle import Rectangle
 
+
+
+def main():
+    height = input("Height:    ")
+    width = input("Width:    ")
+    print(Rectangle.area())
+    print(Rectangle.perimeter())
+    print(Rectangle.string)
+
+if __name__ == "__main__":
+    main()
