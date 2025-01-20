@@ -7,28 +7,26 @@ class Rectangle:
     width:int
     height:int
 
-    @property
-    def area(self):
+    def getArea(self):
         return self.width * self.height
 
-    @property
-    def perimeter(self):
+    def getPerimeter(self):
         return (self.width * 2) + (self.height * 2)
 
-    @property
-    def string(self):
+    def getString(self):
         for rowNum in range(self.height):
             if rowNum == 0 or rowNum == self.height - 1:
                 print("*" * self.width)
             else:
-                rowString = "*"
+                """rowString = "*"
                 rowString += " " * (self.width - 2)
                 rowString += "*"
-                print(rowString)
-                #print("*" + (" " * (self.width - 2)) + "*")
+                print(rowString)"""
+
+                print("*" + (" " * (self.width - 2)) + "*")
 
 if __name__ == "__main__":
     rect1 = Rectangle(20, 10)
-    print(rect1.area)
-    print(rect1.perimeter)
-    print(rect1.string)
+    print(rect1.area())
+    print(rect1.perimeter())
+    print(rect1.string())
