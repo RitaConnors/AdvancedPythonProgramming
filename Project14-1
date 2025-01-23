@@ -1,13 +1,22 @@
+# this code goes with Project14-1
+
 from Rectangle import Rectangle
 
-
-
 def main():
-    height = input("Height:    ")
-    width = input("Width:    ")
-    print(Rectangle.area())
-    print(Rectangle.perimeter())
-    print(Rectangle.string)
+    while True:
+        height = int(input("Height:    "))
+        width = int(input("Width:    "))
+
+        rect = Rectangle(width, height)
+
+        print(rect.getArea())
+        print(rect.getPerimeter())
+        print(rect.getString())
+
+        go_again = input(f"\nContinue? (y/n) ")
+        if go_again != "y":
+            print("Bye!")
+            break
 
 if __name__ == "__main__":
     main()
