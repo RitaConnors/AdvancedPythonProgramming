@@ -1,1 +1,43 @@
 # this code goes with the Project14-2 module I have created
+
+import random
+
+class Card:
+    def __init__(self, rank, suit):
+        self.rank = rank
+        self.suit = suit
+
+    def __str__(self):
+        return f"{self.rank} of {self.suit}"
+
+class Deck:
+    ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']
+    suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades']
+
+    def __init__(self):
+        self.cards = [Card(rank, suit) for suit in self.suits for rank in self.ranks]
+
+    def shuffle(self):
+        random.shuffle(self.cards)
+
+    def count(self):
+        return len(self.cards)
+
+    def deal(self):
+        if self.count() > 0:
+            return self.cards.pop()
+        else:
+            return None
+
+if __name__ == "__main__":
+    deck = Deck()
+    print(f"Deck created with {deck.count()} cards.")
+
+    for i in range(5):
+        print(str(deck.cards[i]))
+
+    deck.shuffle()
+    print(f"\nAfter shuffling, the deck has {deck.count()} cards remaining.")
+
+    for i in range(5):
+        print(str(deck.cards[i]))
