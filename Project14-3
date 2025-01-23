@@ -1,1 +1,46 @@
 # this code belongs to the Customer module I have created
+
+import csv
+from Customer import Customer
+
+def loadCustomers():
+    customers = []
+    try:
+        with open("customers.csv", newline='', encoding='utf-8') as file:
+            reader = csv.reader(file)
+            for row in reader:
+                id, firstName, lastName, company, address, city, state, zip = row
+                customer = Customer(id, firstName, lastName, company, address, city, state, zip)
+                customers.append(customer)
+    except FileNotFoundError:
+        print(f"Error: The file was not found.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    return customers
+
+def findCustomer(customers, id):
+    for customer in customers:
+        if customer.id == id:
+            return customer
+    return None
+
+def main():
+    customers = loadCustomers()
+    if not customers:
+        return
+
+    while True:
+        searchId = input("\nEnter customer ID: ")
+        customer = findCustomer(customers, searchId)
+        if customer:
+            print(f"\n{customer.fullName}\n{customer.fullAddress}\n")
+        else:
+            print("\nNo customer found with that ID.")
+
+        choice = input("\nContinue? (y/n): ")
+        if choice.lower() != "y":
+            break
+    print("\nBye!")
+
+if __name__ == "__main__":
+    main()
