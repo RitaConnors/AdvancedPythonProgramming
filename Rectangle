@@ -14,16 +14,18 @@ class Rectangle:
         return (self.width * 2) + (self.height * 2)
 
     def getString(self):
+        result = []
         for rowNum in range(self.height):
             if rowNum == 0 or rowNum == self.height - 1:
-                print("*" * self.width)
+                result.append("*" * self.width)
             else:
                 """rowString = "*"
                 rowString += " " * (self.width - 2)
                 rowString += "*"
-                print(rowString)"""
+                result.append(rowString)"""
 
-                print("*" + (" " * (self.width - 2)) + "*")
+                result.append("*" +(" " * (self.width - 2)) + "*")
+        return "\n".join(result)
 
 if __name__ == "__main__":
     rect1 = Rectangle(20, 10)
