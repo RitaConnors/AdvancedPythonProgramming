@@ -1,1 +1,35 @@
 # this code belongs to the Project14-3 module I have created
+
+from dataclasses import dataclass
+
+class Customer:
+    def __init__(self, id, firstName, lastName, company, address, city, state, zip):
+        self.id = id
+        self.firstName = firstName
+        self.lastName = lastName
+        self.company = company
+        self.address = address
+        self.city = city
+        self.state = state
+        self.zip = zip
+
+    @property
+    def fullName(self):
+        return f"{self.firstName} {self.lastName}"
+
+    @property
+    def fullAddress(self):
+        if self.company:
+            return f"{self.company}\n{self.address}\n{self.city}, {self.state} {self.zip}"
+        else:
+            return f"{self.address}\n{self.city}, {self.state} {self.zip}"
+
+if __name__ == "__main__":
+    customer1 = Customer("1", "John", "Doe", "ABC Corp", "123 Main St", "Anytown", "NY", "12345")
+    customer2 = Customer("2", "Jane", "Smith", "", "456 Oak Ave", "Somewhere", "CA", "67890")
+
+    print(f"{customer1.fullName}")
+    print(f"{customer1.fullAddress}\n")
+
+    print(f"{customer2.fullName}")
+    print(f"{customer2.fullAddress}\n")
