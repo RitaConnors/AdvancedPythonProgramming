@@ -1,1 +1,37 @@
 # this code goes with the Cards module that I have created
+
+from Cards import Deck
+
+def main():
+    deck = Deck()
+    deck.shuffle()
+
+    print(f"I have shuffled a deck of {deck.count()} cards.")
+
+    try:
+        num_cards = int(input("\nHow many cards would you like? "))
+        if num_cards <= 0:
+            print("Please enter a positive number of cards.")
+            return
+    except ValueError:
+        print("Please enter a valid integer.")
+        return
+
+    dealt_cards = []
+    for _ in range(num_cards):
+        card = deck.deal()
+        if card:
+            dealt_cards.append(str(card))
+        else:
+            print("No more cards to deal.")
+            break
+
+    if dealt_cards:
+        print(f"\nHere are you cards: ")
+        for card in dealt_cards:
+            print(card)
+        print(f"\nThere are {deck.count()} card left in the deck.")
+        print("\nGood luck!")
+
+if __name__ == "__main__":
+    main()
