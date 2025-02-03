@@ -1,0 +1,29 @@
+#This code goes with the Rectangle2 code in the repo
+
+from Rectangle import Rectangle, Square
+
+
+def main():
+    while True:
+        choice = input("\nRectangle or square? (r/s): ")
+        if choice.lower() == "r":
+            height = int(input("Height:    "))
+            width = int(input("Width:    "))
+            rect = Rectangle(width, height)
+            print(rect.getArea())
+            print(rect.getPerimeter())
+            print(rect.__str__())
+        elif choice.lower() == "s":
+            length = int(input("Length:    "))
+            square = Square(length)
+            print(square.getArea())
+            print(square.getPerimeter())
+            print(square.__str__())
+
+        go_again = input(f"\nContinue? (y/n) ")
+        if go_again != "y":
+            print("Bye!")
+            break
+
+if __name__ == "__main__":
+    main()
