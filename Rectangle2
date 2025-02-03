@@ -1,0 +1,49 @@
+#This code goes with the Project15-1 code in this repo
+
+from dataclasses import dataclass
+
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def getPerimeter(self):
+        return (self.width * 2) + (self.height * 2)
+
+    def getArea(self):
+        return self.width * self.height
+
+    def __str__(self):
+        result = []
+        for rowNum in range(self.height):
+            if rowNum == 0 or rowNum == self.height - 1:
+                result.append("*" * self.width)
+            else:
+                result.append("*" + (" " * (self.width - 2)) + "*")
+        return "\n".join(result)
+
+class Square(Rectangle):
+    def __init__(self, length):
+        self.length = length
+        self.width = length
+        self.height = length
+
+    def __str__(self):
+        result = []
+        for rowNum in range(self.length):
+            if rowNum == 0 or rowNum == self.length - 1:
+                result.append("*" * self.length)
+            else:
+                result.append("*" + (" " * (self.length - 2)) + "*")
+        return "\n".join(result)
+
+if __name__ == "__main__":
+    """rect1 = Rectangle(20, 10)
+    print(rect1.getArea())
+    print(rect1.getPerimeter())
+    print(rect1.__str__())"""
+
+    square1 = Square(6)
+    print(square1.getArea())
+    print(square1.getPerimeter())
+    print(square1.__str__())
