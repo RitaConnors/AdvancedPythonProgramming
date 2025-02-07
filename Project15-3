@@ -1,0 +1,42 @@
+# This code goes with the Persons code
+
+from Persons import Customer, Employee
+
+def get_customer_data():
+    first_name = input("First name: ")
+    last_name = input("Last name: ")
+    email = input("Email: ")
+    customer_number = input("Number: ")
+
+    return Customer(first_name, last_name, email, customer_number)
+
+def get_employee_data():
+    first_name = input("First name: ")
+    last_name = input("Last name: ")
+    email = input("Email: ")
+    ssn = input("SSN: ")
+
+    return Employee(first_name, last_name, email, ssn)
+
+def main():
+    while True:
+        choice = input("\nCustomer or employee? (c/e): ").lower()
+        if choice == 'c':
+            print("\nDATA ENTRY")
+            customer = get_customer_data()
+            print("\n" + str(customer))
+        elif choice == 'e':
+            print("\nDATA ENTRY")
+            employee = get_employee_data()
+            print("\n" + str(employee))
+        else:
+            print("\nInvalid choice. Please try again.")
+
+        go_again = input("\nContinue? (y/n): ").lower()
+        if go_again != 'y':
+            break
+            
+    print("\nBye!")
+
+if __name__ == "__main__":
+    main()
