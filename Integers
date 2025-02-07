@@ -1,0 +1,53 @@
+# This code goes with the Project15-4 code
+
+import random
+
+class RandomIntList(list):
+    def __init__(self, size):
+        if size <= 0:
+            raise ValueError("The size must be a positive integer.")
+        super().__init__()
+        for _ in range(size):
+            rand_int = random.randint(1, 100)
+            self.append(rand_int)
+
+    def get_count(self):
+        return len(self)
+
+    def get_total(self):
+        return sum(self)
+
+    def get_average(self):
+        if self.get_count() == 0:
+            return 0
+        return self.get_total() / self.get_count()
+
+    def __str__(self):
+        return ', '.join(str(x) for x in self)
+
+if __name__ == "__main__":
+    test_list1 = RandomIntList(5)
+    print(f"Test List 1: {test_list1}")
+    print(f"Count: {test_list1.get_count()}")
+    print(f"Total: {test_list1.get_total()}")
+    print(f"Average: {test_list1.get_average()}")
+    print("-" * 30)
+
+    try:
+        test_list2 = RandomIntList(0)
+    except ValueError as e:
+        print(f"Error for Test 2: {e}")
+    print("-" * 30)
+
+    try:
+        test_list3 = RandomIntList(-3)
+    except ValueError as e:
+        print(f"Error for Test 3: {e}")
+    print("-" * 30)
+
+    test_list4 = RandomIntList(10)
+    print(f"Test List 4: {test_list4}")
+    print(f"Count: {test_list4.get_count()}")
+    print(f"Total: {test_list4.get_total()}")
+    print(f"Average: {test_list4.get_average():.2f}")
+    print("-" * 30)
