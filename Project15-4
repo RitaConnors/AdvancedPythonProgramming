@@ -1,0 +1,32 @@
+# This code goes with the Integers code
+
+from Integers import RandomIntList
+
+def main():
+    while True:
+        try:
+            size = int(input("\nHow many random integers should the list contain?: "))
+
+            if size <= 0:
+                print("\nPlease enter a positive integer.")
+                return
+
+            int_list = RandomIntList(size)
+
+            print("\nRandom Integers")
+            print("===============")
+            print(f"Integers: {int_list}")
+            print(f"Count: {int_list.get_count()}")
+            print(f"Total: {int_list.get_total()}")
+            print(f"Average: {int_list.get_average()}")
+        except ValueError as e:
+            print(f"Invalid input: {e}")
+
+        go_again = input("\nContinue? (y/n): ").lower()
+        if go_again != 'y':
+            break
+
+    print("\nBye!")
+
+if __name__ == "__main__":
+    main()
