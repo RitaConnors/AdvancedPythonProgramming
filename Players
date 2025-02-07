@@ -1,0 +1,77 @@
+# This code goes with Project15-1
+
+import random
+
+class Player:
+    def __init__(self, name):
+        self.name = name
+        self.roshambo = 'rock'
+        self.wins = 0
+        self.losses = 0
+
+    def generateRoshambo(self):
+        self.roshambo = 'rock'
+
+    def play(self, opponent):
+        if self.roshambo == opponent.roshambo:
+            return None
+        elif (self.roshambo == 'rock' and opponent.roshambo == 'scissors') or \
+             (self.roshambo == 'scissors' and opponent.roshambo == 'paper') or \
+             (self.roshambo == 'paper' and opponent.roshambo == 'rock'):
+            self.wins += 1
+            opponent.losses += 1
+            return self
+        else:
+            self.losses += 1
+            opponent.wins += 1
+            return opponent
+
+class Bart(Player):
+    def __init__(self):
+        super().__init__("Bart")
+
+    def generateRoshambo(self):
+        self.roshambo = 'rock'
+
+class Lisa(Player):
+    def __init__(self):
+        super().__init__("Lisa")
+
+    def generateRoshambo(self):
+        self.roshambo = random.choice(['rock', 'paper', 'scissors'])
+
+if __name__ == "__main__":
+    bart = Bart()
+    bart.generateRoshambo()
+    print(f"Bart's move: {bart.roshambo}")
+
+    lisa = Lisa()
+    lisa.generateRoshambo()
+    print(f"Lisa's move: {lisa.roshambo}")
+
+    player1 = Player("Player1")
+    player1.roshambo = 'rock'
+
+    player2 = Player("player2")
+    player2.roshambo = 'scissors'
+
+    winner = player1.play(player2)
+    if winner is None:
+        print("Round result: Draw!")
+    else:
+        print(f"Round result: {winner.name} wins!")
+
+    player2.roshambo = 'paper'
+    winner = player1.play(player2)
+    if winner is None:
+        print("Round result: Draw!")
+    else:
+        print(f"Round result: {winner.name} wins!")
+
+    player1.roshambo = 'scissors'
+    player2.roshambo = 'scissors'
+    winner = player1.play(player2)
+    if winner is None:
+        print("Round result: Draw!")
+    else:
+        print(f"Round result: {winner.name} wins!")
