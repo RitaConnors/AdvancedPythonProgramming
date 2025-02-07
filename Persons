@@ -1,0 +1,36 @@
+# This code goes with the Project15-3 code
+
+class Person:
+    def __init__(self, first_name, last_name, email):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.email = email
+
+    def get_full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
+class Customer(Person):
+    def __init__(self, first_name, last_name, email, customer_number):
+        super().__init__(first_name, last_name, email)
+        self.customer_number = customer_number
+
+    def __str__(self):
+        return f"Customer: {self.get_full_name()} - Email: {self.email} - Customer Number: {self.customer_number}"
+
+class Employee(Person):
+    def __init__(self, first_name, last_name, email, ssn):
+        super().__init__(first_name, last_name, email)
+        self.ssn = ssn
+
+    def __str__(self):
+        return f"Employee: {self.get_full_name()} - Email: {self.email} - SSN: {self.ssn}"
+
+if __name__ == "__main__":
+    person = Person("Keres", "Cethin", "kcemrys@writersblock.com")
+    print(f"Person Full Name: {person.get_full_name()}")
+
+    customer = Customer("Illene", "Amalthea", "amaltheaillene19@brightlight.com", 9876543211)
+    print(customer)
+
+    employee = Employee("Esmeray", "Lysithea", "esmeraylys@EDM.com", 123456789)
+    print(employee)
