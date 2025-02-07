@@ -1,0 +1,58 @@
+# This code goes with Players code
+
+from Players import Player, Bart, Lisa
+
+def main():
+    player_name = input("Enter your name: ")
+    user = Player(player_name)
+
+    player_choice = input("\nWould you like to play against Bart or Lisa? (b/l): ")
+    if player_choice.lower() == 'b':
+        opponent = Bart()
+    elif player_choice.lower() == 'l':
+        opponent = Lisa()
+    else:
+        print("Invalid choice.")
+
+    while True:
+        user_choice = input("\nRock, paper, or scissors? (r/p/s): ")
+        while user_choice not in ['r', 'p', 's']:
+            print("Invalid choice! Please enter 'r', 'p', or 's'.")
+            user_choice = input("\nRock, paper, or scissors? (r/p/s): ").lower()
+
+        if user_choice == 'r':
+            user.roshambo = 'rock'
+        elif user_choice == 'p':
+            user.roshambo = 'paper'
+        elif user_choice == 's':
+            user.roshambo = 'scissors'
+
+        opponent.generateRoshambo()
+
+        print(f"{user.name}: {user.roshambo}")
+        print(f"{opponent.name}: {opponent.roshambo}")
+
+        winner = user.play(opponent)
+
+        if winner is None:
+            print("Draw!")
+        else:
+            print(f"{winner.name} wins!")
+
+        print(f"Score: {user.name} {user.wins} - {opponent.name} {opponent.wins}")
+
+        play_again = input("\nPlay again? (y/n): ")
+        if play_again.lower() == 'n':
+            break
+
+    print(f"\nFinal Score: {user.name}: {user.wins} - {opponent.name}: {opponent.wins}")
+
+    if user.wins > opponent.wins:
+        print(f"{user.name} is the champion of this round!")
+    elif user.wins < opponent.wins:
+        print(f"{opponent.name} is the champion of this round!")
+    else:
+        print("It's a tied game!")
+
+if __name__ == "__main__":
+    main()
