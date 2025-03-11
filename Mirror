@@ -1,0 +1,21 @@
+# This program goes with the StackAndQueue, Reverse, and Lottery programs
+
+from StackAndQueue import Queue
+
+def mirror(queue):
+    temp_queue = Queue()
+
+    for item in queue.queue:
+        temp_queue.enqueue(item)
+
+    for item in reversed(queue.queue):
+        queue.enqueue(item)
+
+if __name__ == "__main__":
+    q = Queue()
+    q.enqueue('a')
+    q.enqueue('b')
+    q.enqueue('c')
+    print(f"Before mirror: {q.queue}")
+    mirror(q)
+    print(f"After mirror: {q.queue}")
