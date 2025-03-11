@@ -1,0 +1,75 @@
+# This program is the Queue and Stack for the Reverse, Mirror and Lottery programs
+
+class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def push(self, item):
+        self.stack.append(item)
+
+    def pop(self):
+        if not self.is_empty():
+            return self.stack.pop()
+        return None
+
+    def peek(self):
+        if not self.is_empty():
+            return self.stack[-1]
+        return None
+
+    def clear(self):
+        self.stack.clear()
+
+    def length(self):
+        return len(self.stack)
+
+    def is_empty(self):
+        return len(self.stack) == 0
+
+    def __str__(self):
+        return f"Stack has {len(self.stack)} items."
+
+class Queue:
+    def __init__(self):
+        self.queue = []
+
+    def enqueue(self, item):
+        self.queue.append(item)
+
+    def dequeue(self):
+        if not self.is_empty():
+            return self.queue.pop(0)
+        return None
+
+    def peek(self):
+        if not self.is_empty():
+            return self.queue[0]
+        return None
+
+    def length(self):
+        return len(self.queue)
+
+    def is_empty(self):
+        return len(self.queue) == 0
+
+    def __str__(self):
+        return f"Queue has {len(self.queue)} items."
+
+if __name__ == "__main__":
+    stack = Stack()
+    stack.push(5)
+    stack.push(10)
+    print(stack)
+    print(stack.pop())
+    print(stack.peek())
+    stack.clear()
+    print(stack)
+
+    queue = Queue()
+    queue.enqueue('apple')
+    queue.enqueue('banana')
+    print(queue)
+    print(queue.dequeue())
+    print(queue.peek())
+    queue.enqueue('cherry')
+    print(queue)
