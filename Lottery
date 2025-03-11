@@ -1,0 +1,54 @@
+#This program goes with the StackAndQueue, Reverse and Mirror programs
+
+import random
+
+winning_numbers = {9, 20, 27, 35, 37, 43}
+
+def generate_random_numbers():
+    return set(random.sample(range(1, 50), 6))
+
+def check_prize(picked_numbers):
+    match_count = len(picked_numbers & winning_numbers)
+    if match_count == 2:
+        return "Free play"
+    elif match_count == 3:
+        return "$10"
+    elif match_count == 4:
+        return "$90.50"
+    elif match_count == 5:
+        return "$5000"
+    elif match_count == 6:
+        return "$13,000,000"
+    else:
+        return "No Prize"
+
+def calculate_money(times_to_play):
+    total_spent = times_to_play * 2
+    total_won = 0
+
+    for _ in range(times_to_play):
+        picked_numbers = generate_random_numbers()
+        prize = check_prize(picked_numbers)
+        if prize == "Free play":
+            total_won += 0
+        elif prize == "$10":
+            total_won += 10
+        elif prize == "$90.50":
+            total_won += 90.50
+        elif prize == "$5000":
+            total_won += 5000
+        elif prize == "$13,000,000":
+            total_won += 13000000
+
+    net = total_won - total_spent
+    return net
+
+if __name__ == "__main__":
+    picked_numbers = generate_random_numbers()
+    print(f"Picked number: {picked_numbers}")
+    prize = check_prize(picked_numbers)
+    print(f"Prize: {prize}")
+
+    times = 5
+    result = calculate_money(times)
+    print(f"Money spent or won after {times} plays: ${result}")
