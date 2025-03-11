@@ -1,0 +1,19 @@
+#This program goes with the StackAndQueue, Mirror, and Lottery programs
+
+from StackAndQueue import Stack
+
+def reverse(numbers):
+    stack = Stack()
+
+    for num in numbers:
+        stack.push(num)
+
+    reversed_list = []
+    while not stack.is_empty():
+        reversed_list.append(stack.pop())
+
+    return reversed_list
+
+if __name__ == "__main__":
+    nums = [1, 2, 3, 4, 5]
+    print(reverse(nums))
