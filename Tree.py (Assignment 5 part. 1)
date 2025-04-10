@@ -1,50 +1,80 @@
+#This is parts A, C and D
+
+import random
+import time
+
 class TreeNode:
     def __init__(self, data):
         self.data = data
         self.left = None
         self.right = None
 
-    def preOrderTraversal(node):
-        if node is None:
-            return
-        print(node.data, end=", ")
-        preOrderTraversal(node.left)
-        preOrderTraversal(node.right)
+def preOrderTraversal(node):
+    if node is None:
+        return
+    print(node.data, end=", ")
+    preOrderTraversal(node.left)
+    preOrderTraversal(node.right)
 
-    def inOrderTraversal(node):
-        if node is None:
-            return
-        inOrderTraversal(node.left)
-        print(node.data, end=", ")
-        inOrderTraversal(node.right)
+def inOrderTraversal(node):
+    if node is None:
+        return
+    inOrderTraversal(node.left)
+    print(node.data, end=", ")
+    inOrderTraversal(node.right)
 
-    def postOrderTraversal(node):
-        if node is None:
-            return
-        postOrderTraversal(node.left)
-        postOrderTraversal(node.right)
-        print(node.data, end=", ")
+def postOrderTraversal(node):
+    if node is None:
+        return
+    postOrderTraversal(node.left)
+    postOrderTraversal(node.right)
+    print(node.data, end=", ")
 
-    def insert(node, data):
-        if node is None:
-            return TreeNode(data)
-        else:
-            if data < node.data:
-                node.left = insert(node.left, data)
-            elif data > node.data:
-                node.right = insert(node.right, data)
+def insert(node, data):
+    if node is None:
+        return TreeNode(data)
+    else:
+        if data < node.data:
+            node.left = insert(node.left, data)
+        elif data > node.data:
+            node.right = insert(node.right, data)
+    return node
+
+def search(node, target):
+    if node is None:
+        return None
+    elif node.data == target:
         return node
+    elif target < node.data:
+        return search(node.left, target)
+    else:
+        return search(node.right, target)
 
 def main():
     root = TreeNode(5)
-    insert(root, 6)
-    insert(root, 12)
-    insert(root, 2)
-    insert(root, 1)
-    insert(root, 4)
-    insert(root, 13)
+    for value in [6, 12, 2, 1, 4, 13]:
+        insert(root, value)
 
     inOrderTraversal(root)
+    preOrderTraversal(root)
+    postOrderTraversal(root)
+
+    big_root = None
+    values = random.sample(range(1000000), 100000)
+    for val in values:
+        big_root = insert(big_root, val)
+
+    search_values = random.choices(range(1000, 2000), k=100)
+    found_count = 0
+
+    start_time = time.time()
+    for val in search_values:
+        if search(big_root, val):
+            found_count += 1
+    end_time = time.time()
+
+    print(f"Search completed in {end_time - start_time:.6f} seconds.")
+    print(f"Found {found_count} out of 100 values.")
 
 if __name__ == "__main__":
     main()
