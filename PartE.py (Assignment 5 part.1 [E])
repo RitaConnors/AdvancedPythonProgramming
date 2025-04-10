@@ -1,0 +1,25 @@
+# This is part E of part 1 of assignment 5
+
+import random
+import time
+
+def linear_search(data_list, target):
+    return target in data_list
+
+def main():
+    start_time = time.time()
+    values_list = random.sample(range(1000000), 100000)
+
+    search_values = random.choices(range(1000, 2000), k=100)
+    found_count = 0
+
+    for val in search_values:
+        if linear_search(values_list, val):
+            found_count += 1
+    end_time = time.time()
+
+    print(f"Search completed in {end_time - start_time:.6f} seconds.")
+    print(f"Found {found_count} out of 100 values.")
+
+if __name__ == "__main__":
+    main()
