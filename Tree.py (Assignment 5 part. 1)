@@ -1,0 +1,50 @@
+class TreeNode:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+    def preOrderTraversal(node):
+        if node is None:
+            return
+        print(node.data, end=", ")
+        preOrderTraversal(node.left)
+        preOrderTraversal(node.right)
+
+    def inOrderTraversal(node):
+        if node is None:
+            return
+        inOrderTraversal(node.left)
+        print(node.data, end=", ")
+        inOrderTraversal(node.right)
+
+    def postOrderTraversal(node):
+        if node is None:
+            return
+        postOrderTraversal(node.left)
+        postOrderTraversal(node.right)
+        print(node.data, end=", ")
+
+    def insert(node, data):
+        if node is None:
+            return TreeNode(data)
+        else:
+            if data < node.data:
+                node.left = insert(node.left, data)
+            elif data > node.data:
+                node.right = insert(node.right, data)
+        return node
+
+def main():
+    root = TreeNode(5)
+    insert(root, 6)
+    insert(root, 12)
+    insert(root, 2)
+    insert(root, 1)
+    insert(root, 4)
+    insert(root, 13)
+
+    inOrderTraversal(root)
+
+if __name__ == "__main__":
+    main()
