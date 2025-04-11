@@ -1,0 +1,96 @@
+import heapq
+import random
+import time
+
+# Part a - Heap Sort
+def heap_sort(data):
+    heapq.heapify(data)  # O(n) as the algorithm must compare each value one time.
+    return [heapq.heappop(data) for _ in range(len(data))]  # O(n log n) as the time increases fast when the number of values is 'n' increased.
+
+
+# Part b - Priority Queue DS using heap.
+class Customer:
+    def __init__(self, name, customer_id, priority):
+        self.name = name
+        self.customer_id = customer_id
+        self.priority = priority
+
+    def __repr__(self):
+        return f"{self.name} (ID: {self.customer_id}, Priority: {self.priority})"
+
+class PriorityQueueHeap:
+    def __init__(self):
+        self.heap = []
+        self.counter = 0
+
+    def insert(self, customer):
+        heapq.heappush(self.heap, (customer.priority, customer))
+        self.counter += 1
+
+    def remove(self):
+        return heapq.heappop(self.heap)[2]
+
+
+# Part c - Priority Queue List without using heap.
+class PriorityQueueList:
+    def __init__(self):
+        self.data = []
+
+    def insert(self, customer):
+        self.data.append(customer)
+
+    def remove(self):
+        min_index = 0
+        for i in range(1, len(self.data)):
+            if self.data[i].priority < self.data[min_index].priority:
+                min_index = i
+        return self.data.pop(min_index)
+
+def main():
+    # Part a - Place and remove values with benchmarking.
+    data = [random.randint(0, 1000000) for _ in range(1000000)]
+
+    start_time = time.time()
+    sorted_data = heap_sort(data.copy())
+    end_time = time.time()
+    print(f"Heap Sort completed in {end_time - start_time:.6f} seconds.)")
+    # End of part a
+
+
+    # Part b - Insert 1000 customers and remove 10 with benchmarking.
+    customers = [Customer(f"Customer{i}", i, random.randint(1, 100)) for i in range(1000)]
+
+    pq_heap = PriorityQueueHeap()
+
+    start_time = time.time()
+    for cust in customers:
+        pq_heap.insert(cust)
+
+    removed_customers = [pq_heap.remove() for _ in range(10)]
+
+    heap_duration = time.time() - start_time
+
+    print(f"Heap-based priority queue took {heap_duration:.6f} seconds.")
+    print("First 10 removed customers:")
+    for c in removed_customers:
+        print(c)
+    # End of part b
+
+
+    # Part c - Loop and benchmarking.
+    pq_list = PriorityQueueList()
+    customers = [Customer(f"Customer{i}", i, random.randint(1, 100)) for i in range(1000)]
+
+    start_time = time.time()
+    for cust in customers:
+        pq_list.insert(cust)
+
+    removed_customers_list = [pq_list.remove() for _ in range(10)]
+    list_duration = time.time() - start_time
+
+    print(f"List-based priority queue took {list_duration:.6f} seconds.")
+    print("Removed customers: ", removed_customers_list)
+    # End of part c
+
+if __name__ == "__main__":
+    main()
