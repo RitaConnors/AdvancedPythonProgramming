@@ -4,8 +4,10 @@ import time
 
 # Part a - Heap Sort
 def heap_sort(data):
-    heapq.heapify(data)  # O(n) as the algorithm must compare each value one time.
-    return [heapq.heappop(data) for _ in range(len(data))]  # O(n log n) as the time increases fast when the number of values is 'n' increased.
+    heapq.heapify(data)  
+    # O(n) as the algorithm must compare each value one time.
+    return [heapq.heappop(data) for _ in range(len(data))]  
+    # O(n log n) as the time increases fast when the number of values is 'n' increased.
 
 
 # Part b - Priority Queue DS using heap.
